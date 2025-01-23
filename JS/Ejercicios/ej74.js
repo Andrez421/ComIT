@@ -1,5 +1,5 @@
-let asteristo   = 1;
-while (asteristo <= 14) {
-    console.log("*".repeat(asteristo));
-    asteristo+=2;
+let mensaje = 1;
+while (mensaje <= 14) {
+    console.log("*".repeat(mensaje ));
+    mensaje +=2;
 }
