@@ -1,0 +1,273 @@
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { 
+  Ionicons,
+  MaterialCommunityIcons,
+  FontAwesome5,
+  MaterialIcons 
+} from '@expo/vector-icons';
+
+const DashboardScreen = () => {
+  // Datos de ejemplo para las estadísticas
+  const stats = {
+    totalProducts: 156,
+    lowStock: 8,
+    pendingOrders: 12,
+    activeProjects: 5
+  };
+
+  const menuItems = [
+    {
+      title: 'Inventario',
+      icon: <MaterialCommunityIcons name="clipboard-list" size={32} color="#FFF" />,
+      background: ['#4ECDC4', '#2BAD96'],
+      route: 'Inventory'
+    },
+    {
+      title: 'Productos',
+      icon: <MaterialCommunityIcons name="package-variant" size={32} color="#FFF" />,
+      background: ['#FF6B6B', '#EE5253'],
+      route: 'Products'
+    },
+    {
+      title: 'Movimientos',
+      icon: <MaterialIcons name="swap-horiz" size={32} color="#FFF" />,
+      background: ['#45B649', '#38A23A'],
+      route: 'Movements'
+    },
+    {
+      title: 'Stock Mínimo',
+      icon: <MaterialCommunityIcons name="alert-circle-outline" size={32} color="#FFF" />,
+      background: ['#F7971E', '#FFD200'],
+      route: 'MinStock'
+    },
+    {
+      title: 'Reportes',
+      icon: <MaterialCommunityIcons name="chart-bar" size={32} color="#FFF" />,
+      background: ['#6C5CE7', '#5B4ED1'],
+      route: 'Reports'
+    },
+    {
+      title: 'Proveedores',
+      icon: <MaterialIcons name="business" size={32} color="#FFF" />,
+      background: ['#8E44AD', '#7D3C98'],
+      route: 'Suppliers'
+    },
+  ];
+
+  const StatCard = ({ title, value, icon, color }) => (
+    <View style={styles.statCard}>
+      <LinearGradient
+        colors={[color, color.replace('1)', '0.8)')]}
+        style={styles.statGradient}
+      >
+        <View style={styles.statIcon}>{icon}</View>
+        <Text style={styles.statValue}>{value}</Text>
+        <Text style={styles.statTitle}>{title}</Text>
+      </LinearGradient>
+    </View>
+  );
+
+  const MenuItem = ({ item }) => (
+    <TouchableOpacity style={styles.menuItem}>
+      <LinearGradient
+        colors={item.background}
+        style={styles.menuItemGradient}
+      >
+        <View style={styles.menuItemContent}>
+          {item.icon}
+          <Text style={styles.menuItemText}>{item.title}</Text>
+        </View>
+      </LinearGradient>
+    </TouchableOpacity>
+  );
+
+  return (
+    <ScrollView style={styles.container}>
+      <LinearGradient
+        colors={['#4ECDC4', '#2BAD96']}
+        style={styles.header}
+      >
+        <View style={styles.headerContent}>
+          <View>
+            <Text style={styles.welcomeText}>Bienvenido,</Text>
+            <Text style={styles.userName}>Admin</Text>
+          </View>
+          <TouchableOpacity style={styles.profileButton}>
+            <MaterialCommunityIcons name="account-circle" size={40} color="#FFF" />
+          </TouchableOpacity>
+        </View>
+      </LinearGradient>
+
+      <View style={styles.statsContainer}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <StatCard
+            title="Productos"
+            value={stats.totalProducts}
+            icon={<MaterialCommunityIcons name="package-variant" size={24} color="#FFF" />}
+            color="rgba(78, 205, 196, 1)"
+          />
+          <StatCard
+            title="Stock Bajo"
+            value={stats.lowStock}
+            icon={<MaterialCommunityIcons name="alert-circle" size={24} color="#FFF" />}
+            color="rgba(255, 107, 107, 1)"
+          />
+          <StatCard
+            title="Órdenes"
+            value={stats.pendingOrders}
+            icon={<MaterialCommunityIcons name="clipboard-list" size={24} color="#FFF" />}
+            color="rgba(108, 92, 231, 1)"
+          />
+          <StatCard
+            title="Proyectos"
+            value={stats.activeProjects}
+            icon={<MaterialCommunityIcons name="folder-network" size={24} color="#FFF" />}
+            color="rgba(69, 182, 73, 1)"
+          />
+        </ScrollView>
+      </View>
+
+      <View style={styles.menuGrid}>
+        {menuItems.map((item, index) => (
+          <MenuItem key={index} item={item} />
+        ))}
+      </View>
+
+      <View style={styles.quickActions}>
+        <Text style={styles.sectionTitle}>Acciones Rápidas</Text>
+        <TouchableOpacity style={styles.actionButton}>
+          <MaterialCommunityIcons name="barcode-scan" size={24} color="#4ECDC4" />
+          <Text style={styles.actionButtonText}>Escanear Producto</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.actionButton}>
+          <MaterialCommunityIcons name="plus-circle-outline" size={24} color="#4ECDC4" />
+          <Text style={styles.actionButtonText}>Nuevo Producto</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  header: {
+    paddingTop: 60,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  headerContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  welcomeText: {
+    fontSize: 16,
+    color: '#FFF',
+    opacity: 0.9,
+  },
+  userName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFF',
+  },
+  profileButton: {
+    padding: 5,
+  },
+  statsContainer: {
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+  },
+  statCard: {
+    width: 140,
+    height: 120,
+    marginHorizontal: 5,
+    borderRadius: 15,
+    overflow: 'hidden',
+  },
+  statGradient: {
+    flex: 1,
+    padding: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  statIcon: {
+    marginBottom: 10,
+  },
+  statValue: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFF',
+  },
+  statTitle: {
+    fontSize: 14,
+    color: '#FFF',
+    opacity: 0.9,
+  },
+  menuGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 10,
+    justifyContent: 'space-between',
+  },
+  menuItem: {
+    width: '48%',
+    aspectRatio: 1,
+    marginBottom: 15,
+    borderRadius: 15,
+    overflow: 'hidden',
+  },
+  menuItemGradient: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  menuItemContent: {
+    alignItems: 'center',
+  },
+  menuItemText: {
+    marginTop: 10,
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFF',
+  },
+  quickActions: {
+    padding: 20,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    color: '#333',
+  },
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+    elevation: 2,
+  },
+  actionButtonText: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#333',
+  },
+});
+
+export default DashboardScreen;
