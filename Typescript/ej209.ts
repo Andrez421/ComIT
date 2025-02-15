@@ -17,6 +17,4 @@ enum TipoDeJugador {
   };
 
 
-
-  
 export default {};
