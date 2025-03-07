@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Banderas = () => {
   return (
     <SafeAreaView style={styles.container}>
-      {/* Grupo 1: Banderas Verticales Superior Izquierda */}
+       {/* Banderas en la parte superior */}
       <View style={styles.grupoSuperiorIzquierda}>
         {/* Bandera de Colombia */}
         <View style={styles.banderaContainer}>
@@ -53,9 +53,9 @@ const Banderas = () => {
         </View>
       </View>
 
-      {/* Grupo 2: Banderas Horizontales Centro */}
+      {/* Banderas en el centro */}
       <View style={styles.horizontalFlagsContainer}>
-        {/* Bandera de Colombia Horizontal */}
+        {/* Bandera de Colombia */}
         <View style={styles.banderaContainerHorizontal}>
           <View style={styles.banderaHorizontal}>
             <View style={[styles.franjaHorizontal, { backgroundColor: 'yellow' }]}>
@@ -70,7 +70,7 @@ const Banderas = () => {
           </View>
         </View>
 
-        {/* Bandera de Perú Horizontal */}
+        {/* Bandera de Perú */}
         <View style={styles.banderaContainerHorizontal}>
           <View style={styles.banderaHorizontal}>
             <View style={[styles.franjaHorizontal, { backgroundColor: 'red' }]}>
@@ -85,7 +85,7 @@ const Banderas = () => {
           </View>
         </View>
 
-        {/* Bandera de Argentina Horizontal */}
+        {/* Bandera de Argentina */}
         <View style={styles.banderaContainerHorizontal}>
           <View style={styles.banderaHorizontal}>
             <View style={[styles.franjaHorizontal, { backgroundColor: '#74ACDF' }]}>
@@ -101,10 +101,10 @@ const Banderas = () => {
         </View>
       </View>
 
-      {/* Grupo 3: Banderas Verticales Inferior Derecha (invertidas) */}
+      {/* Banderas en la parte inferior */}
       <View style={styles.grupoInferiorDerecha}>
 
-        {/* Bandera de Colombia Invertida */}
+        {/* Bandera de Colombia */}
         <View style={styles.banderaContainer}>
           <View style={styles.bandera}>
             <View style={[styles.franja, { backgroundColor: 'yellow' }]}>
@@ -119,7 +119,7 @@ const Banderas = () => {
           </View>
         </View>
 
-        {/* Bandera de Perú Invertida */}
+        {/* Bandera de Perú */}
         <View style={styles.banderaContainer}>
           <View style={styles.bandera}>
             <View style={[styles.franja, { backgroundColor: 'red' }]}>
@@ -134,7 +134,7 @@ const Banderas = () => {
           </View>
         </View>
 
-        {/* Bandera de Argentina Invertida */}
+        {/* Bandera de Argentina */}
         <View style={styles.banderaContainer}>
           <View style={styles.bandera}>
             <View style={[styles.franja, { backgroundColor: '#74ACDF' }]}>
