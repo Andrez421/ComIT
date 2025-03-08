@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 
 const SIZE = 80;
 
-type TarjetaExperienciaProps = {
+type TarjetaEstudioProps = {
   logo: string;
   posicion: string;
   empresa: string;
@@ -12,20 +12,20 @@ type TarjetaExperienciaProps = {
   tecnologias: string;
 };
 
-export const TarjetaExperiencia = ({
+export const TarjetaEstudio = ({
   logo,
   posicion,
   empresa,
   fecha,
   locacion,
   tecnologias,
-}: TarjetaExperienciaProps) => {
+}: TarjetaEstudioProps) => { // Corregido el tipo
   return (
     <View style={styles.contenedor}>
       <Image
         style={styles.logo}
         source={{
-          uri: logo,
+          uri: logo || 'https://via.placeholder.com/80' // Fallback para logos vacíos
         }}
       />
       <View style={styles.contenedorDeContenido}>
@@ -65,7 +65,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     lineHeight: 18,
   },
-
-
-
 });

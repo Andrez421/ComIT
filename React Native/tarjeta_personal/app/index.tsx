@@ -10,7 +10,9 @@ import {
 } from "react-native";
 import { TarjetaExperiencia } from "@/components/TarjetaExperiencia";
 import { experiencias } from "@/data/experiencia";
+import { estudio } from "@/data/estudio";
 import { Iconos } from "@/components/Iconos";
+import { TarjetaEstudio } from "@/components/TarjetaEstudio";
 
 export default function Index() {
   const onContactHandler = () => {
@@ -78,6 +80,16 @@ export default function Index() {
               {...experiencia}
             />
           ))}
+          <Text style={styles.estudio}>Estudios</Text>
+          {estudio.map((item, index) => (
+            <TarjetaEstudio
+              key={`${index}-${item.empresa}`}
+              {...item}
+            />
+          ))}
+
+
+
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -127,4 +139,12 @@ const styles = StyleSheet.create({
     color: "darkblue",
     marginBottom: 15,
   },
+  estudio: {
+    fontWeight: "bold",
+    fontSize: 24,
+    color: "darkblue",
+    marginBottom: 15,
+    marginTop: 15,
+  },
+
 });
