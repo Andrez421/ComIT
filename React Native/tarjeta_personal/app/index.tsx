@@ -8,17 +8,38 @@ import {
   Button,
   Linking,
 } from "react-native";
-import { FontAwesome6 } from "@expo/vector-icons";
+import { TarjetaExperiencia } from "@/components/TarjetaExperiencia";
+import { experiencias } from "@/data/experiencia";
+import { Iconos } from "@/components/Iconos";
 
 export default function Index() {
   const onContactHandler = () => {
     Linking.openURL("mailto:andres931204@gmail.com");
   };
 
+  const onGithubPressHandler = () => {
+    Linking.openURL("https://github.com/Andrez421");
+  };
+
+  const onTwitterPressHandler = () => {
+    Linking.openURL("https://x.com/andres931204");
+  };
+
+  const onAtPressHandler = () => {
+    Linking.openURL("https://www.threads.net/@2451ap");
+  };
+
+  const onInstagramPressHandler = () => {
+    Linking.openURL("https://www.instagram.com/2451ap/");
+  };
+
+  const onFacebookPressHandler = () => {
+    Linking.openURL("https://web.facebook.com/andres931204/");
+  };
 
   return (
     <SafeAreaView style={styles.contenido}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.contentContainer}>
           <Image
             source={{
@@ -30,196 +51,33 @@ export default function Index() {
             source={require("@/assets/images/yo.jpg")}
             style={styles.imagenPersonal}
           />
-          <Text style={styles.title}>Andres Sebastian</Text>
-
-          <View style={styles.contenedorIconos}>
-            <FontAwesome6 name="github" size={24} color="darkblue" />
-            <FontAwesome6 name="x-twitter" size={24} color="darkblue" />
-            <FontAwesome6 name="at" size={24} color="darkblue" />
-            <FontAwesome6 name="instagram" size={24} color="darkblue" />
-            <FontAwesome6 name="facebook" size={24} color="darkblue" />
-          </View>
-          <Button title="Contacto" onPress={onContactHandler}/>
-          <Text style={styles.bio}>
-            Dirvertido programador que actualmente vive en Popayan. Me gusta
+          <Text style={styles.title}>Andrés Sebastián</Text>
+          <Iconos 
+            onGithubPress={onGithubPressHandler}
+            onTwitterPress={onTwitterPressHandler}
+            onAtPress={onAtPressHandler}
+            onInstagramPress={onInstagramPressHandler}
+            onFacebookPress={onFacebookPressHandler}
+          />
+          <Button 
+            title="Contacto" 
+            onPress={onContactHandler}
+            color="#007AFF"
+          />
+          <Text style={styles.bio}>            
+            Estudiante de Ing. de Sistemas en Unicauca que actualmente vive en Popayán. 
+            Trabajo en Sena CCyS como Analista de Sistemas y me gusta
             mucho programar en React Native y Python.
           </Text>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "flex-start",
-              gap: 10,
-              borderBottomColor: "#ddd",
-              borderBottomWidth: 1,
-              padding: 10,
-            }}
-          >
-            <Image
-              style={{ width: 80, height: 80 }}
-              source={{
-                uri: "https://media.licdn.com/dms/image/v2/C560BAQFoMbh8Jawjhg/company-logo_100_100/company-logo_100_100/0/1631338342207?e=1749081600&v=beta&t=6fgq4Zi_lslt6EwSEinoOUmyLfOT2qaNu9C_ny94y9c",
-              }}
+          
+          <Text style={styles.experiencia}>Experiencia Laboral</Text>
+          
+          {experiencias.map((experiencia, index) => (
+            <TarjetaExperiencia
+              key={`${index}-${experiencia.empresa}`}
+              {...experiencia}
             />
-            <View style={{ flex: 1, flexDirection: "column" }}>
-              <Text style={{ fontWeight: "bold", fontSize: 14 }}>Posición</Text>
-              <Text style={{ fontSize: 12, lineHeight: 18 }}>Empresa</Text>
-              <Text style={{ fontSize: 12, color: "#808080", lineHeight: 18 }}>
-                Fecha
-              </Text>
-              <Text
-                style={{
-                  fontSize: 12,
-                  color: "#808080",
-                  lineHeight: 18,
-                  marginBottom: 10,
-                }}
-              >
-                Locación
-              </Text>
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontWeight: "bold",
-                  lineHeight: 18,
-                }}
-              >
-                Tecnologías
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "flex-start",
-              gap: 10,
-              borderBottomColor: "#ddd",
-              borderBottomWidth: 1,
-              padding: 10,
-            }}
-          >
-            <Image
-              style={{ width: 80, height: 80 }}
-              source={{
-                uri: "https://media.licdn.com/dms/image/v2/C560BAQFoMbh8Jawjhg/company-logo_100_100/company-logo_100_100/0/1631338342207?e=1749081600&v=beta&t=6fgq4Zi_lslt6EwSEinoOUmyLfOT2qaNu9C_ny94y9c",
-              }}
-            />
-            <View style={{ flex: 1, flexDirection: "column" }}>
-              <Text style={{ fontWeight: "bold", fontSize: 14 }}>Posición</Text>
-              <Text style={{ fontSize: 12, lineHeight: 18 }}>Empresa</Text>
-              <Text style={{ fontSize: 12, color: "#808080", lineHeight: 18 }}>
-                Fecha
-              </Text>
-              <Text
-                style={{
-                  fontSize: 12,
-                  color: "#808080",
-                  lineHeight: 18,
-                  marginBottom: 10,
-                }}
-              >
-                Locación
-              </Text>
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontWeight: "bold",
-                  lineHeight: 18,
-                }}
-              >
-                Tecnologías
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "flex-start",
-              gap: 10,
-              borderBottomColor: "#ddd",
-              borderBottomWidth: 1,
-              padding: 10,
-            }}
-          >
-            <Image
-              style={{ width: 80, height: 80 }}
-              source={{
-                uri: "https://media.licdn.com/dms/image/v2/C560BAQFoMbh8Jawjhg/company-logo_100_100/company-logo_100_100/0/1631338342207?e=1749081600&v=beta&t=6fgq4Zi_lslt6EwSEinoOUmyLfOT2qaNu9C_ny94y9c",
-              }}
-            />
-            <View style={{ flex: 1, flexDirection: "column" }}>
-              <Text style={{ fontWeight: "bold", fontSize: 14 }}>Posición</Text>
-              <Text style={{ fontSize: 12, lineHeight: 18 }}>Empresa</Text>
-              <Text style={{ fontSize: 12, color: "#808080", lineHeight: 18 }}>
-                Fecha
-              </Text>
-              <Text
-                style={{
-                  fontSize: 12,
-                  color: "#808080",
-                  lineHeight: 18,
-                  marginBottom: 10,
-                }}
-              >
-                Locación
-              </Text>
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontWeight: "bold",
-                  lineHeight: 18,
-                }}
-              >
-                Tecnologías
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "flex-start",
-              gap: 10,
-              borderBottomColor: "#ddd",
-              borderBottomWidth: 1,
-              padding: 10,
-            }}
-          >
-            <Image
-              style={{ width: 80, height: 80 }}
-              source={{
-                uri: "https://media.licdn.com/dms/image/v2/C560BAQFoMbh8Jawjhg/company-logo_100_100/company-logo_100_100/0/1631338342207?e=1749081600&v=beta&t=6fgq4Zi_lslt6EwSEinoOUmyLfOT2qaNu9C_ny94y9c",
-              }}
-            />
-            <View style={{ flex: 1, flexDirection: "column" }}>
-              <Text style={{ fontWeight: "bold", fontSize: 14 }}>Posición</Text>
-              <Text style={{ fontSize: 12, lineHeight: 18 }}>Empresa</Text>
-              <Text style={{ fontSize: 12, color: "#808080", lineHeight: 18 }}>
-                Fecha
-              </Text>
-              <Text
-                style={{
-                  fontSize: 12,
-                  color: "#808080",
-                  lineHeight: 18,
-                  marginBottom: 10,
-                }}
-              >
-                Locación
-              </Text>
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontWeight: "bold",
-                  lineHeight: 18,
-                }}
-              >
-                Tecnologías
-              </Text>
-            </View>
-          </View>            
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -229,15 +87,26 @@ export default function Index() {
 const styles = StyleSheet.create({
   contenido: {
     flex: 1,
+    backgroundColor: "white",
+  },
+  scrollContent: {
+    flexGrow: 1,
   },
   contentContainer: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#61DBFB",
     alignItems: "center",
-    justifyContent: "center",
   },
-  title: { fontSize: 30, fontWeight: "bold", color: "darkblue" },
-  banner: { width: "100%", aspectRatio: 16 / 9 },
+  title: { 
+    fontSize: 30, 
+    fontWeight: "bold", 
+    color: "darkblue",
+    marginVertical: 10,
+  },
+  banner: { 
+    width: "100%", 
+    aspectRatio: 16 / 9 
+  },
   imagenPersonal: {
     width: 200,
     height: 200,
@@ -246,13 +115,16 @@ const styles = StyleSheet.create({
     borderColor: "white",
     marginTop: -100,
   },
-  contenedorIconos: { flexDirection: "row", marginVertical: 10, gap: 10 },
-  bio: { padding: 10, fontSize: 12, lineHeight: 18 },
+  bio: { 
+    padding: 20, 
+    fontSize: 13, 
+    textAlign: 'center',
+    color: 'black',
+  },
   experiencia: {
     fontWeight: "bold",
-    fontSize: 18,
-    marginTop: 20,
+    fontSize: 24,
     color: "darkblue",
-    marginBottom: 10,
+    marginBottom: 15,
   },
 });
