@@ -7,14 +7,37 @@ import {
   Image,
   Button,
   Linking,
+  Animated,
 } from "react-native";
+import { useRef, useEffect } from "react";
 import { TarjetaExperiencia } from "@/components/TarjetaExperiencia";
 import { experiencias } from "@/data/experiencia";
 import { estudio } from "@/data/estudio";
 import { Iconos } from "@/components/Iconos";
 import { TarjetaEstudio } from "@/components/TarjetaEstudio";
 
-export default function Index() {
+import { tema } from "@/config/temas";
+
+const skills = [
+  { name: "React Native", level: 90 },
+  { name: "JavaScript", level: 85 },
+  { name: "Python", level: 80 },
+  // ...más habilidades
+];
+
+// Componente de barra de progreso
+interface SkillBarProps {
+  skill: string;
+  level: number;
+}
+
+const SkillBar = ({ skill, level }: SkillBarProps) => (
+  <View style={styles.skillBar}>
+    <Text>{skill}</Text>
+    <View style={[styles.progress, { width: `${level}%` }]} />
+  </View>
+);
+
   const onContactHandler = () => {
     Linking.openURL("mailto:andres931204@gmail.com");
   };
@@ -39,6 +62,17 @@ export default function Index() {
     Linking.openURL("https://web.facebook.com/andres931204/");
   };
 
+  // Añadir animación al cargar la imagen de perfil
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
   return (
     <SafeAreaView style={styles.contenido}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -49,11 +83,11 @@ export default function Index() {
             }}
             style={styles.banner}
           />
-          <Image
+          <Animated.Image
             source={require("@/assets/images/yo.jpg")}
-            style={styles.imagenPersonal}
+            style={[styles.imagenPersonal, { opacity: fadeAnim }]}
           />
-          <Text style={styles.title}>Andrés Sebastián</Text>
+          <Text tema={styles.title}>Andrés Sebastián</Text>
           <Iconos 
             onGithubPress={onGithubPressHandler}
             onTwitterPress={onTwitterPressHandler}
@@ -71,80 +105,8 @@ export default function Index() {
             Trabajo en Sena CCyS como Analista de Sistemas y me gusta
             mucho programar en React Native y Python.
           </Text>
-          
-          <Text style={styles.experiencia}>Experiencia Laboral</Text>
-          
-          {experiencias.map((experiencia, index) => (
-            <TarjetaExperiencia
-              key={`${index}-${experiencia.empresa}`}
-              {...experiencia}
-            />
-          ))}
-          <Text style={styles.estudio}>Estudios</Text>
-          {estudio.map((item, index) => (
-            <TarjetaEstudio
-              key={`${index}-${item.empresa}`}
-              {...item}
-            />
-          ))}
-
-
-
         </View>
       </ScrollView>
     </SafeAreaView>
   );
-}
 
-const styles = StyleSheet.create({
-  contenido: {
-    flex: 1,
-    backgroundColor: "white",
-  },
-  scrollContent: {
-    flexGrow: 1,
-  },
-  contentContainer: {
-    flex: 1,
-    backgroundColor: "#61DBFB",
-    alignItems: "center",
-  },
-  title: { 
-    fontSize: 30, 
-    fontWeight: "bold", 
-    color: "darkblue",
-    marginVertical: 10,
-  },
-  banner: { 
-    width: "100%", 
-    aspectRatio: 16 / 9 
-  },
-  imagenPersonal: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    borderWidth: 5,
-    borderColor: "white",
-    marginTop: -100,
-  },
-  bio: { 
-    padding: 20, 
-    fontSize: 13, 
-    textAlign: 'center',
-    color: 'black',
-  },
-  experiencia: {
-    fontWeight: "bold",
-    fontSize: 24,
-    color: "darkblue",
-    marginBottom: 15,
-  },
-  estudio: {
-    fontWeight: "bold",
-    fontSize: 24,
-    color: "darkblue",
-    marginBottom: 15,
-    marginTop: 15,
-  },
-
-});
