@@ -1,12 +1,15 @@
 import { Tabs } from "expo-router";
 import { FontAwesome6 } from "@expo/vector-icons";
+import { Platform } from "react-native";
 
 export default function RootLayout() {
   return (
-    <Tabs screenOptions={{
-      tabBarActiveTintColor: "#007AFF",
-      tabBarInactiveTintColor: "gray",
-    }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "#007AFF",
+        tabBarInactiveTintColor: "gray",
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
