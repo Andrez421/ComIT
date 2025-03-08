@@ -14,7 +14,7 @@ export const Icono = ({
   icon,
   size = 24,
   color = "darkblue",
-  activeColor = "#00ced1",
+  activeColor = "white",
   onPress,
 }: IconoProps) => {
   return (

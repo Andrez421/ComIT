@@ -20,7 +20,7 @@ export const experiencias = [
       logo: "https://i.blogs.es/5dd137/logo-telefonica/1024_2000.jpg",
       posicion: "Tecnico de Soporte en Sitio",
       empresa: "Telefonica",
-      fecha: "2023 - 2024",
+      fecha: "2023 - 2204",
       locacion: "Popayan",
       tecnologias: "",
     },
