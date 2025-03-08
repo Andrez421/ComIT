@@ -23,6 +23,38 @@ export const estudio: Estudio[] = [
     fecha: "2025", 
     locacion: "Remote",
     tecnologias: "Python",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_unad_color.png/776px-Logo_unad_color.png",
+    posicion: "Python",
+    empresa: "UNAD - CISCO",
+    fecha: "2025", 
+    locacion: "Remote",
+    tecnologias: "Python",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_unad_color.png/776px-Logo_unad_color.png",
+    posicion: "Python",
+    empresa: "UNAD - CISCO",
+    fecha: "2025", 
+    locacion: "Remote",
+    tecnologias: "Python",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_unad_color.png/776px-Logo_unad_color.png",
+    posicion: "Python",
+    empresa: "UNAD - CISCO",
+    fecha: "2025", 
+    locacion: "Remote",
+    tecnologias: "Python",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_unad_color.png/776px-Logo_unad_color.png",
+    posicion: "Python",
+    empresa: "UNAD - CISCO",
+    fecha: "2025", 
+    locacion: "Remote",
+    tecnologias: "Python",
   }
 
 ];
