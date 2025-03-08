@@ -25,7 +25,7 @@ export const TarjetaExperiencia = ({
       <Image
         style={styles.logo}
         source={{
-          uri: logo,
+          uri: logo || 'https://via.placeholder.com/80' // Fallback para logos vacíos
         }}
       />
       <View style={styles.contenedorDeContenido}>

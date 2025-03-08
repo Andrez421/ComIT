@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Text,
   SafeAreaView,
@@ -10,7 +11,7 @@ import {
   Animated,
   Dimensions,
 } from "react-native";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import { Iconos } from "../components/Iconos";
 import { tema } from "../config/temas";
 
@@ -29,13 +30,11 @@ interface SkillBarProps {
   level: number;
 }
 
-const SkillBar = ({ skill, level }: SkillBarProps) => {
-  // Calcular el ancho basado en el nivel y el ancho de la pantalla
+const SkillBar = React.memo(({ skill, level }: SkillBarProps) => {
   const screenWidth = Dimensions.get('window').width;
-  const containerPadding = tema.spacing.md * 2; // Padding del contenedor principal (izquierda y derecha)
-  const profileInfoPadding = 0; // No hay padding adicional en profileInfoContainer
-  const maxWidth = screenWidth - containerPadding - profileInfoPadding;
-  const progressWidth = (maxWidth * level) / 100;
+  const containerPadding = tema.spacing.md * 2;
+  const maxWidth = screenWidth - containerPadding - 40;
+  const progressWidth = Math.max(0, Math.min((maxWidth * level) / 100, maxWidth));
 
   return (
     <View style={styles.skillBar}>
@@ -48,47 +47,58 @@ const SkillBar = ({ skill, level }: SkillBarProps) => {
       </View>
     </View>
   );
-};
+});
 
 export default function Profile() {
-  const onContactHandler = () => {
+  // Memoizar los handlers para evitar recreaciones innecesarias
+  const onContactHandler = useMemo(() => () => {
     Linking.openURL("mailto:andres931204@gmail.com");
-  };
+  }, []);
 
-  const onGithubPressHandler = () => {
+  const onGithubPressHandler = useMemo(() => () => {
     Linking.openURL("https://github.com/Andrez421");
-  };
+  }, []);
 
-  const onTwitterPressHandler = () => {
+  const onTwitterPressHandler = useMemo(() => () => {
     Linking.openURL("https://x.com/andres931204");
-  };
+  }, []);
 
-  const onAtPressHandler = () => {
+  const onAtPressHandler = useMemo(() => () => {
     Linking.openURL("https://www.threads.net/@2451ap");
-  };
+  }, []);
 
-  const onInstagramPressHandler = () => {
+  const onInstagramPressHandler = useMemo(() => () => {
     Linking.openURL("https://www.instagram.com/2451ap/");
-  };
+  }, []);
 
-  const onFacebookPressHandler = () => {
+  const onFacebookPressHandler = useMemo(() => () => {
     Linking.openURL("https://web.facebook.com/andres931204/");
-  };
+  }, []);
 
   // Añadir animación al cargar la imagen de perfil
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    Animated.timing(fadeAnim, {
+    const animation = Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 1000,
       useNativeDriver: true,
-    }).start();
+    });
+    
+    animation.start();
+    
+    return () => {
+      animation.stop();
+      fadeAnim.setValue(0);
+    };
   }, []);
 
   return (
     <SafeAreaView style={styles.contenido}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView 
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.contentContainer}>
           <View style={styles.bannerContainer}>
             <Image
@@ -144,18 +154,18 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
+    paddingTop: 0, // Eliminar el padding superior para que el banner esté pegado al borde
   },
   contentContainer: {
     padding: tema.spacing.md,
-    paddingTop: 0,
     alignItems: 'center',
   },
   bannerContainer: {
     width: '100%',
     height: 150,
     borderRadius: tema.borderRadius.md,
-    marginBottom: tema.spacing.lg + 10,
-    position: 'relative',
+    marginBottom: tema.spacing.lg + 75, // Espacio para la mitad de la imagen de perfil
+    position: 'relative', // Para posicionar la imagen de perfil
   },
   banner: {
     width: '100%',
@@ -169,18 +179,20 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: tema.colors.primary.main,
     position: 'absolute',
-    bottom: -75,
+    bottom: -75, // La mitad de la altura de la imagen
     alignSelf: 'center',
   },
   profileInfoContainer: {
     alignItems: 'center',
-    marginTop: 75,
+    marginTop: 0, // Ya no necesitamos margen superior adicional
+    width: '100%', // Asegurar que ocupe todo el ancho disponible
   },
   title: {
     fontSize: 34,
     fontWeight: 'bold',
     color: tema.colors.text.primary,
     marginBottom: tema.spacing.sm,
+    textAlign: 'center',
   },
   bio: {
     fontSize: 16,

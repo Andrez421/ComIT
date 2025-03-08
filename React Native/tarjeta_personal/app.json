@@ -39,14 +39,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "navigation": {
-      "tabs": {
-        "headerShown": false,
-        "gestureEnabled": true,
-        "swipeEnabled": true,
-        "animationEnabled": true
-      }
     }
   }
 }
