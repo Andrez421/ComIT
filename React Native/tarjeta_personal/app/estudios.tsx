@@ -1,7 +1,7 @@
 import { SafeAreaView, ScrollView, View, Text, StyleSheet } from 'react-native';
-import { TarjetaEstudio } from "@/components/TarjetaEstudio";
-import { estudio } from "@/data/estudio";
-import { tema } from "@/config/temas";
+import { TarjetaEstudio } from "../components/TarjetaEstudio";
+import { estudio } from "../data/estudio";
+import { tema } from "../config/temas";
 
 export default function Education() {
   return (
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     padding: tema.spacing.md,
   },
   titulo: {
-    ...tema.typography.h2,
+    fontSize: 24,
+    fontWeight: '600',
     color: tema.colors.primary.dark,
     marginBottom: tema.spacing.md,
   },

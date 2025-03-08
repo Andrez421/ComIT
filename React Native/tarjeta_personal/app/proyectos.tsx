@@ -1,5 +1,5 @@
 import { SafeAreaView, ScrollView, View, Text, StyleSheet } from 'react-native';
-import { tema } from "@/config/temas";
+import { tema } from "../config/temas";
 
 export default function Projects() {
   return (
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     padding: tema.spacing.md,
   },
   titulo: {
-    ...tema.typography.h2,
+    fontSize: 24,
+    fontWeight: '600',
     color: tema.colors.primary.dark,
     marginBottom: tema.spacing.md,
   },

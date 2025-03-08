@@ -1,7 +1,7 @@
 import { SafeAreaView, ScrollView, View, Text, StyleSheet } from 'react-native';
-import { TarjetaExperiencia } from "@/components/TarjetaExperiencia";
-import { experiencias } from "@/data/experiencia";
-import { tema } from "@/config/temas";
+import { TarjetaExperiencia } from "../components/TarjetaExperiencia";
+import { experiencias } from "../data/experiencia";
+import { tema } from "../config/temas";
 
 export default function Experience() {
   return (
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     padding: tema.spacing.md,
   },
   titulo: {
-    ...tema.typography.h2,
+    fontSize: 24,
+    fontWeight: '600',
     color: tema.colors.primary.dark,
     marginBottom: tema.spacing.md,
   },
