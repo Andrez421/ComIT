@@ -11,8 +11,10 @@ import {
 import { TarjetaExperiencia } from "@/components/TarjetaExperiencia";
 import { experiencias } from "@/data/experiencia";
 import { estudio } from "@/data/estudio";
+import { proyectos } from "@/data/proyectos";
 import { Iconos } from "@/components/Iconos";
 import { TarjetaEstudio } from "@/components/TarjetaEstudio";
+import { TarjetaProyecto } from "@/components/TarjetaProyectos";
 
 export default function Index() {
   const onContactHandler = () => {
@@ -87,6 +89,13 @@ export default function Index() {
               {...item}
             />
           ))}
+          <Text style={styles.proyecto}>Proyectos</Text>
+          {proyectos.map((item, index) => (
+            <TarjetaProyecto
+              key={`${index}-${item.empresa}`}
+              {...item}
+            />
+          ))}
 
 
 
@@ -146,5 +155,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     marginTop: 15,
   },
-
+  proyecto: {
+    fontWeight: "bold",
+    fontSize: 24,
+    color: "darkblue",
+    marginBottom: 15,
+    marginTop: 15,
+  },
 });
