@@ -5,20 +5,18 @@ const SIZE = 80;
 
 type TarjetaEstudioProps = {
   logo: string;
-  posicion: string;
-  empresa: string;
+  estudio: string;
+  titulo: string;
+  institucion: string;
   fecha: string;
-  locacion: string;
-  tecnologias: string;
 };
 
 export const TarjetaEstudio = ({
   logo,
-  posicion,
-  empresa,
+  estudio,
+  titulo,
+  institucion,
   fecha,
-  locacion,
-  tecnologias,
 }: TarjetaEstudioProps) => {
   return (
     <View style={styles.contenedor}>
@@ -30,11 +28,10 @@ export const TarjetaEstudio = ({
         resizeMode="contain"
       />
       <View style={styles.contenedorDeContenido}>
-        <Text style={styles.posicion}>{posicion}</Text>
-        <Text style={styles.empresa}>{empresa}</Text>
+        <Text style={styles.estudio}>{estudio}</Text>
+        <Text style={styles.titulo}>{titulo}</Text>
+        <Text style={styles.institucion}>{institucion}</Text>
         <Text style={styles.fecha}>{fecha}</Text>
-        <Text style={styles.locacion}>{locacion}</Text>
-        <Text style={styles.tecnologias}>{tecnologias}</Text>
       </View>
     </View>
   );
@@ -52,18 +49,8 @@ const styles = StyleSheet.create({
   },
   logo: { width: SIZE, height: SIZE },
   contenedorDeContenido: { flex: 1, flexDirection: "column" },
-  posicion: { fontWeight: "bold", fontSize: 14 },
-  empresa: { fontSize: 12, lineHeight: 18 },
-  fecha: { fontSize: 12, color: "#2f4f4f", lineHeight: 18 },
-  locacion: {
-    fontSize: 12,
-    color: "#2f4f4f",
-    lineHeight: 18,
-    marginBottom: 10,
-  },
-  tecnologias: {
-    fontSize: 12,
-    fontWeight: "bold",
-    lineHeight: 18,
-  },
+  estudio: { fontWeight: "bold", fontSize: 14 },
+  titulo: { fontSize: 13, fontWeight: "bold", lineHeight: 18 },
+  institucion: { fontSize: 12, lineHeight: 18 },
+  fecha: { fontSize: 12, color: "#2f4f4f", lineHeight: 18, marginBottom: 10 },
 });

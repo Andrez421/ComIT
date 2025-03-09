@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 
-const SIZE = 80;
+const SIZE = 250;
 
 type TarjetaProyectoProps = {
-  logo: string;
+  logo: any; // Changed from string to any to support both require() and URI
   proyecto: string;
   descripcion: string;
   tecnologias: string;
@@ -18,18 +18,16 @@ export const TarjetaProyecto = ({
 }: TarjetaProyectoProps) => {
   return (
     <View style={styles.contenedor}>
-      <Image
-        style={styles.logo}
-        source={{
-          uri: logo,
-        }}
-        resizeMode="contain"
-      />
       <View style={styles.contenedorDeContenido}>
         <Text style={styles.proyecto}>{proyecto}</Text>
         <Text style={styles.descripcion}>{descripcion}</Text>
         <Text style={styles.tecnologias}>{tecnologias}</Text>
       </View>
+      <Image
+        style={styles.logo}
+        source={typeof logo === 'string' ? { uri: logo } : logo}
+        resizeMode="contain"
+      />
     </View>
   );
 };
@@ -37,20 +35,41 @@ export const TarjetaProyecto = ({
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "flex-start",
-    gap: 10,
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 15,
     borderBottomColor: "#ddd",
     borderBottomWidth: 1,
-    padding: 10,
+    padding: 15,
   },
-  logo: { width: SIZE, height: SIZE },
-  contenedorDeContenido: { flex: 1, flexDirection: "column" },
-  proyecto: { fontWeight: "bold", fontSize: 14 },
-  descripcion: { fontSize: 12, lineHeight: 18 },
+  logo: { 
+    width: SIZE, 
+    height: SIZE,
+    marginTop: 10,
+    borderColor: "black",
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: "white",
+  },
+  contenedorDeContenido: { 
+    flex: 1, 
+    flexDirection: "column",
+    width: "100%",
+    alignItems: "center"
+  },
+  proyecto: { 
+    fontWeight: "bold", 
+    fontSize: 16 
+  },
+  descripcion: { 
+    fontSize: 14, 
+    lineHeight: 20,
+    textAlign: "center",
+    marginVertical: 5
+  },
   tecnologias: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "bold",
-    lineHeight: 18,
+    lineHeight: 20,
   },
 });

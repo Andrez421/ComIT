@@ -12,7 +12,7 @@ export default function EstudiosScreen() {
           
           {estudio.map((item, index) => (
             <TarjetaEstudio
-              key={`${index}-${item.empresa}`}
+              key={`${index}-${item.institucion}`}
               {...item}
             />
           ))}
