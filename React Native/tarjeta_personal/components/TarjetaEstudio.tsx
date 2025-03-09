@@ -27,6 +27,7 @@ export const TarjetaEstudio = ({
         source={{
           uri: logo,
         }}
+        resizeMode="contain"
       />
       <View style={styles.contenedorDeContenido}>
         <Text style={styles.posicion}>{posicion}</Text>

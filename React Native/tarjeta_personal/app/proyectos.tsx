@@ -12,7 +12,7 @@ export default function ProyectosScreen() {
           
           {proyectos.map((item, index) => (
             <TarjetaProyecto
-              key={`${index}-${item.empresa}`}
+              key={`${index}-${item.descripcion}`}
               {...item}
             />
           ))}

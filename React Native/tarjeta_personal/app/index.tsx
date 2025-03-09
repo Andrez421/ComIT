@@ -9,6 +9,8 @@ import {
   Linking,
 } from "react-native";
 import { Iconos } from "@/components/Iconos";
+import { Habilidades } from "@/components/Habilidades";
+import { habilidades } from "@/data/habilidades";
 
 export default function Index() {
   const onContactHandler = () => {
@@ -67,6 +69,8 @@ export default function Index() {
             Trabajo en Sena CCyS como Analista de Sistemas y me gusta
             mucho programar en React Native y Python.
           </Text>
+          
+          <Habilidades skills={habilidades} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -104,10 +108,12 @@ const styles = StyleSheet.create({
     marginTop: -100,
   },
   bio: { 
-    padding: 20, 
-    fontSize: 13, 
+    padding: 30, 
+    fontSize: 15, 
     textAlign: 'center',
     color: 'black',
+    fontStyle: 'italic',
+    fontWeight: 'bold',
   },
   experiencia: {
     fontWeight: "bold",

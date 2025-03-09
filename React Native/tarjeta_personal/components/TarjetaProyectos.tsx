@@ -5,19 +5,15 @@ const SIZE = 80;
 
 type TarjetaProyectoProps = {
   logo: string;
-  posicion: string;
-  empresa: string;
-  fecha: string;
-  locacion: string;
+  proyecto: string;
+  descripcion: string;
   tecnologias: string;
 };
 
 export const TarjetaProyecto = ({
   logo,
-  posicion,
-  empresa,
-  fecha,
-  locacion,
+  proyecto,
+  descripcion,
   tecnologias,
 }: TarjetaProyectoProps) => {
   return (
@@ -27,12 +23,11 @@ export const TarjetaProyecto = ({
         source={{
           uri: logo,
         }}
+        resizeMode="contain"
       />
       <View style={styles.contenedorDeContenido}>
-        <Text style={styles.posicion}>{posicion}</Text>
-        <Text style={styles.empresa}>{empresa}</Text>
-        <Text style={styles.fecha}>{fecha}</Text>
-        <Text style={styles.locacion}>{locacion}</Text>
+        <Text style={styles.proyecto}>{proyecto}</Text>
+        <Text style={styles.descripcion}>{descripcion}</Text>
         <Text style={styles.tecnologias}>{tecnologias}</Text>
       </View>
     </View>
@@ -51,15 +46,8 @@ const styles = StyleSheet.create({
   },
   logo: { width: SIZE, height: SIZE },
   contenedorDeContenido: { flex: 1, flexDirection: "column" },
-  posicion: { fontWeight: "bold", fontSize: 14 },
-  empresa: { fontSize: 12, lineHeight: 18 },
-  fecha: { fontSize: 12, color: "#2f4f4f", lineHeight: 18 },
-  locacion: {
-    fontSize: 12,
-    color: "#2f4f4f",
-    lineHeight: 18,
-    marginBottom: 10,
-  },
+  proyecto: { fontWeight: "bold", fontSize: 14 },
+  descripcion: { fontSize: 12, lineHeight: 18 },
   tecnologias: {
     fontSize: 12,
     fontWeight: "bold",
