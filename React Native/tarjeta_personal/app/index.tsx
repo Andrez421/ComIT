@@ -36,7 +36,6 @@ export default function Index() {
   const onFacebookPressHandler = () => {
     Linking.openURL("https://web.facebook.com/andres931204/");
   };
-
   return (
     <SafeAreaView style={styles.contenido}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
