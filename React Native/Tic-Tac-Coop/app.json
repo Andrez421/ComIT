@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "triqui",
-    "slug": "triqui",
+    "name": "Tic-Tac-Coop",
+    "slug": "Tic-Tac-Coop",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.andrez421.TicTacCoop"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "f5d08990-d2ce-458c-a412-40d00a8dfa68"
+      }
     }
   }
 }
