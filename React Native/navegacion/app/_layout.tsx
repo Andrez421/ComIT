@@ -1,16 +1,22 @@
-import { Stack } from "expo-router";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Drawer } from "expo-router/drawer";
 
-export default function SettingsLayout() {
+export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen
-        name="index"
-        options={{ title: "Settings Layout - Index" }}
-      />
-      <Stack.Screen
-        name="usuario"
-        options={{ title: "Settings Layout - Usuario" }}
-      />
-    </Stack>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Drawer>
+        <Drawer.Screen
+          name="index"
+          options={{ headerTitle: "Home", drawerLabel: "Home Label" }}
+        />
+        <Drawer.Screen name="about" options={{ headerTitle: "About" }} />
+        <Drawer.Screen name="profile" options={{ headerTitle: "Profile" }} />
+        <Drawer.Screen name="settings" options={{ headerTitle: "Settings" }} />
+        <Drawer.Screen
+          name="modal"
+          options={{ drawerItemStyle: { display: "none" } }}
+        />
+      </Drawer>
+    </GestureHandlerRootView>
   );
 }
