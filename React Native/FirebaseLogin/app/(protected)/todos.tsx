@@ -85,15 +85,21 @@ export default function Todos() {
   };
 
   const renderItem = ({ item }: { item: Todo }) => (
-    <View style={styles.todoItem}>
-      <TouchableOpacity onPress={() => toggleComplete(item.id, item.completed)}>
-        <Text
-          style={{
-            textDecorationLine: item.completed ? "line-through" : "none",
-          }}
-        >
-          {item.title}
-        </Text>
+    <View style={[styles.todoItem, { borderLeftWidth: 5, borderLeftColor: item.completed ? '#4CAF50' : '#FFA500' }]}>
+      <TouchableOpacity 
+        style={styles.todoContentWrapper}
+        onPress={() => toggleComplete(item.id, item.completed)}
+      >
+        <View style={styles.todoContent}>
+          <View style={[styles.statusIndicator, { backgroundColor: item.completed ? '#4CAF50' : '#FFA500' }]} />
+          <Text
+            style={{
+              textDecorationLine: item.completed ? "line-through" : "none",
+            }}
+          >
+            {item.title}
+          </Text>
+        </View>
       </TouchableOpacity>
       <Button title="Borrar" onPress={() => deleteTodo(item.id)} />
     </View>
@@ -158,6 +164,22 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ddd",
     borderBottomWidth: 1, 
     elevation: 2,
+    overflow: "hidden",
+    
+  },
+  todoContentWrapper: {
+    flex: 1,
+    paddingRight: 10,
+  },
+  todoContent: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  statusIndicator: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginRight: 10,
   },
   errorText: {
     color: "red",
@@ -180,5 +202,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
-  }
+  },
+
 });

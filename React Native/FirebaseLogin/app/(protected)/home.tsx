@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebaseConfig";
 import { router } from "expo-router";
-import { VictoryPie } from "victory-native"; // Importar VictoryPie desde victory-native
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
-import Svg from "react-native-svg"; // Asegurarse de que react-native-svg esté disponible
+import Grafico from "../components/Grafico";
+
+
 
 export default function Home() {
   const [taskStats, setTaskStats] = useState({ completed: 0, pending: 0 });
@@ -59,43 +60,19 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <View style={styles.topSection}>
-        <Text style={styles.title}>Home</Text>
+        <Text style={styles.title}>Tareas</Text>
       </View>
       <View style={styles.chartSection}>
-        {isLoading ? (
-          <Text>Cargando datos...</Text>
-        ) : error ? (
-          <Text style={styles.errorText}>{error}</Text>
-        ) : (taskStats.completed === 0 && taskStats.pending === 0) ? (
-          <Text>No hay tareas registradas</Text>
-        ) : (
-          <Svg width={250} height={250}>
-            <VictoryPie
-              standalone={false} // Asegurarse de que no cree su propio contenedor SVG
-              data={[
-                { x: "Completadas", y: taskStats.completed },
-                { x: "Pendientes", y: taskStats.pending }
-              ]}
-              width={250}
-              height={250}
-              colorScale={["#4CAF50", "#FFA500"]}
-              labels={({ datum }) => `${datum.x}\n${datum.y}`}
-              labelRadius={({ innerRadius }) => innerRadius + 30}
-              style={{
-                labels: {
-                  fill: "black",
-                  fontSize: 14,
-                  fontWeight: "bold"
-                }
-              }}
-              padding={50}
-            />
-          </Svg>
-        )}
+        <Grafico 
+          completed={taskStats.completed} 
+          pending={taskStats.pending} 
+          isLoading={isLoading} 
+          error={error} 
+        />
       </View>
       <View style={styles.middleSection}>
         <TouchableOpacity style={[styles.button, styles.todoButton]} onPress={navigateToTodos}>
-          <Text style={styles.buttonText}>Ir a Todos</Text>
+          <Text style={styles.buttonText}>Gestionar Tareas</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.bottomSection}>
@@ -122,6 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1
   },
+
   middleSection: {
     alignItems: "center",
     marginBottom: 40
