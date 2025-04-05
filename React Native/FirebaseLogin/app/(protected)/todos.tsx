@@ -101,6 +101,7 @@ export default function Todos() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Tareas</Text>
       {error && <Text style={styles.errorText}>{error}</Text>}
       <TextInput
         placeholder="Ingrese un nuevo Todo"
@@ -134,6 +135,12 @@ const styles = StyleSheet.create({
     marginTop: 50,
     marginBottom: 20 // Añadimos margen inferior
   },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
   textInput: {
     borderWidth: 1,
     padding: 10,
@@ -147,7 +154,10 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#f9f9f9",
     marginBottom: 5,
-    borderRadius: 5,
+    borderRadius: 5,     
+    borderBottomColor: "#ddd",
+    borderBottomWidth: 1, 
+    elevation: 2,
   },
   errorText: {
     color: "red",

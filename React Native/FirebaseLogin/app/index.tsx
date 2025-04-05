@@ -12,14 +12,18 @@ export default function Index() {
 
   const handleLogin = async () => {
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
-
+      if (!email || !password) {
+        setError("Por favor complete todos los campos");
+        return;
+      }
+      
+      await signInWithEmailAndPassword(auth, email, password);
       setError("");
-
-      router.navigate("/(protected)/home");
+      router.replace("/(protected)/home");
     } catch (err: any) {
-      setError(err.message);
+      setError(err.code === 'auth/invalid-credential' 
+        ? "Credenciales inválidas" 
+        : "Error al iniciar sesión");
     }
   };
 
